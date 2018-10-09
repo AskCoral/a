@@ -2,28 +2,33 @@ interface Action<T = any> {
   type: T
 }
 
-type PayloadFn<Args extends any[], R> = (...args: Args) => R
-type ActionCreator<Args extends any[], A> = (...args: Args) => A
+type PayloadFn<Obj extends {}, R> = (obj: Obj) => R
+interface ActionCreator<T, Obj extends {}, A> {
+  TYPE: T
+  (obj: Obj): A
+}
 
 type TAction<T extends string, Payloads extends {} = {}> = Action<T> &
   { [K in keyof Payloads]: Payloads[K] }
 
-export function a<T extends string>(
+export function a<T extends string>(type: T): ActionCreator<T, {}, TAction<T>>
+export function a<T extends string, Obj extends {}, R>(
   type: T,
-): { TYPE: T; create: ActionCreator<any[], TAction<T>> }
-export function a<T extends string, Args extends any[], R>(
-  type: T,
-  fn: PayloadFn<Args, R>,
-): { TYPE: T; create: ActionCreator<Args, TAction<T, R>> }
-export function a(type: string, payloadFn?: (...args: any[]) => object) {
-  return {
-    TYPE: type,
-    create: (...args: any[]) => {
-      if (payloadFn) {
-        const extra = payloadFn(...args)
-        return { type, ...extra }
-      }
-      return { type }
-    },
+  fn: PayloadFn<Obj, R>,
+): ActionCreator<T, Obj, TAction<T, R>>
+export function a(type: string, payloadFn?: (obj: object) => object) {
+  const actionCreator = (obj: object) => {
+    if (payloadFn) {
+      const extra = payloadFn(obj)
+      return { type, ...extra }
+    }
+    return { type }
   }
+  actionCreator.TYPE = type
+  return actionCreator
+}
+
+export function p<Obj extends {}>(): (obj: Obj) => Obj
+export function p() {
+  return (obj: object) => obj
 }

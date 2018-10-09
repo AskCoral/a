@@ -16,8 +16,8 @@ interface IDispatchProps {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): IDispatchProps => ({
-  onTestAction: () => dispatch(ATestAction.create('bar')),
-  onTestThirdAction: () => dispatch(AThirdTestAction.create(123)),
+  onTestAction: () => dispatch(ATestAction({ str: 'bar' })),
+  onTestThirdAction: () => dispatch(AThirdTestAction({ num: 123 })),
 })
 
 const App = connect(

@@ -9,15 +9,15 @@
  * Actions
  */
 
-import { a } from '@aventus/a'
+import { a, p } from '@aventus/a'
 
 // Simple action without payload
 export const ASimpleAction = a('SIMPLE/ACTION')
-export type ASimpleAction = ReturnType<typeof ASimpleAction.create>
+export type ASimpleAction = ReturnType<typeof ASimpleAction>
 
 // Action with payload
-export const APayloadAction = a('PAYLOAD/ACTION', (str: string) => ({ str }))
-export type APayloadAction = ReturnType<typeof APayloadAction.create>
+export const APayloadAction = a('PAYLOAD/ACTION', p<{ str: string }>())
+export type APayloadAction = ReturnType<typeof APayloadAction>
 ```
 
 ```ts
@@ -51,8 +51,8 @@ export const reducer: Reducer<IState, ASimpleAction | APayloadAction> = (
  */
 
 const mapDispatchToProps = (dispatch: Dispatch): IDispatchProps => ({
-  onSimpleClick: () => dispatch(ASimpleAction.create()),
-  onPayloadClick: (str: string) => dispatch(APayloadAction.create(str)),
+  onSimpleClick: () => dispatch(ASimpleAction()),
+  onPayloadClick: (str: string) => dispatch(APayloadAction({ str })),
 })
 ```
 
@@ -66,10 +66,10 @@ file:
 
 ```ts
 const ASimpleAction = a('SIMPLE/ACTION')
-type ASimpleAction = ReturnType<typeof ASimpleAction.create>
+type ASimpleAction = ReturnType<typeof ASimpleAction>
 
-const APayloadAction = a('PAYLOAD/ACTION', (str: string) => ({ str }))
-type APayloadAction = ReturnType<typeof APayloadAction.create>
+const APayloadAction = a('PAYLOAD/ACTION', p<{ str: string }>())
+type APayloadAction = ReturnType<typeof APayloadAction>
 
 export { ASimpleAction, APayloadAction }
 ```
