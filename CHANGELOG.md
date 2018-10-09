@@ -4,7 +4,7 @@
 
 BREAKING CHANGES...
 
-The payload is now an object instead of an array of arguments:
+The payload is now an object instead of a list of arguments:
 
 ```ts
 const ATestAction = a('A_TEST_ACTION', ({ str }: { str: string }) => ({ str }))
