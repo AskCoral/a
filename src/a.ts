@@ -17,7 +17,7 @@ export function a<T extends string, Obj extends {}, R>(
   fn: PayloadFn<Obj, R>,
 ): ActionCreator<T, Obj, TAction<T, R>>
 export function a(type: string, payloadFn?: (obj: object) => object) {
-  const actionCreator = (obj: object) => {
+  const actionCreator: any = (obj: object) => {
     if (payloadFn) {
       const extra = payloadFn(obj)
       return { type, ...extra }
