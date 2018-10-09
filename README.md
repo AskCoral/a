@@ -56,6 +56,24 @@ const mapDispatchToProps = (dispatch: Dispatch): IDispatchProps => ({
 })
 ```
 
+## Tips
+
+The aim of this project it to reduce boilerplate but also aid readability of
+action files. Ideally, the action and types will fit on one line each. However,
+Prettier's 80 character line-length limit may make this difficult. One way to
+give yourself more characters, is to export all the actions at the end of the
+file:
+
+```ts
+const ASimpleAction = a('SIMPLE/ACTION')
+type ASimpleAction = ReturnType<typeof ASimpleAction.create>
+
+const APayloadAction = a('PAYLOAD/ACTION', (str: string) => ({ str }))
+type APayloadAction = ReturnType<typeof APayloadAction.create>
+
+export { ASimpleAction, APayloadAction }
+```
+
 ## Development
 
 Clone repo and install dependencies using NPM:
