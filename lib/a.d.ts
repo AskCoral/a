@@ -1,17 +1,19 @@
-interface Action<T = any> {
-    type: T;
+declare type TPayloadFn<Obj extends {}, R> = (obj: Obj) => R;
+interface ISimpleActionCreator<T, A> {
+    TYPE: T;
+    (): A;
 }
-declare type PayloadFn<Args extends any[], R> = (...args: Args) => R;
-declare type ActionCreator<Args extends any[], A> = (...args: Args) => A;
-declare type TAction<T extends string, Payloads extends {} = {}> = Action<T> & {
+interface IPayloadActionCreator<T, Obj extends {}, A> {
+    TYPE: T;
+    (obj: Obj): A;
+}
+declare type TSimpleAction<T extends string> = {
+    type: T;
+};
+declare type TPayloadAction<T extends string, Payloads extends {} = {}> = TSimpleAction<T> & {
     [K in keyof Payloads]: Payloads[K];
 };
-export declare function a<T extends string>(type: T): {
-    TYPE: T;
-    create: ActionCreator<any[], TAction<T>>;
-};
-export declare function a<T extends string, Args extends any[], R>(type: T, fn: PayloadFn<Args, R>): {
-    TYPE: T;
-    create: ActionCreator<Args, TAction<T, R>>;
-};
+export declare function a<T extends string>(type: T): ISimpleActionCreator<T, TSimpleAction<T>>;
+export declare function a<T extends string, Obj extends {}, R>(type: T, fn: TPayloadFn<Obj, R>): IPayloadActionCreator<T, Obj, TPayloadAction<T, R>>;
+export declare function p<Obj extends {}>(): (obj: Obj) => Obj;
 export {};
