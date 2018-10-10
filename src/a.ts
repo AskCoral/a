@@ -1,25 +1,34 @@
-interface Action<T = string> {
-  type: T
+type TPayloadFn<Obj extends {}, R> = (obj: Obj) => R
+
+interface ISimpleActionCreator<T, A> {
+  TYPE: T
+  (): A
 }
 
-type PayloadFn<Obj extends {}, R> = (obj: Obj) => R
-
-interface ActionCreator<T, Obj extends {}, A> {
+interface IPayloadActionCreator<T, Obj extends {}, A> {
   TYPE: T
   (obj?: Obj): A
 }
 
-type TAction<T extends string, Payloads extends {} = {}> = Action<T> &
+type TSimpleAction<T extends string> = {
+  type: T
+}
+
+type TPayloadAction<T extends string, Payloads extends {} = {}> = TSimpleAction<
+  T
+> &
   { [K in keyof Payloads]: Payloads[K] }
 
 /**
  * a
  */
-export function a<T extends string>(type: T): ActionCreator<T, {}, TAction<T>>
+export function a<T extends string>(
+  type: T,
+): ISimpleActionCreator<T, TSimpleAction<T>>
 export function a<T extends string, Obj extends {}, R>(
   type: T,
-  fn: PayloadFn<Obj, R>,
-): ActionCreator<T, Obj, TAction<T, R>>
+  fn: TPayloadFn<Obj, R>,
+): IPayloadActionCreator<T, Obj, TPayloadAction<T, R>>
 export function a(type: string, payloadFn?: (obj: object) => object) {
   const actionCreator: any = (obj: object) => {
     if (payloadFn) {
