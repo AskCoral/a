@@ -8,6 +8,7 @@
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest --watchAll",
+    "test:ci": "jest",
     "typecheck": "tsc --noEmit --skipLibCheck",
     "prettier": "prettier --config .prettierrc --write 'src/**/*.{js,ts}'"
   },
