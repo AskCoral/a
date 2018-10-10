@@ -7,7 +7,7 @@ interface ISimpleActionCreator<T, A> {
 
 interface IPayloadActionCreator<T, Obj extends {}, A> {
   TYPE: T
-  (obj?: Obj): A
+  (obj: Obj): A
 }
 
 type TSimpleAction<T extends string> = {
