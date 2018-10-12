@@ -1,6 +1,12 @@
 # a: Typesafe Redux action creation utility
 
-**NB: this hasn't been released on NPM yet.**
+**NB: this hasn't been released to NPM yet.**
+
+## Install
+
+```sh
+npm install git+ssh://git@github.com:AventusSystems/a.git#v2.0.0
+```
 
 ## Usage
 
