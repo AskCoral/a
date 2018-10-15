@@ -80,6 +80,22 @@ type APayloadAction = ReturnType<typeof APayloadAction>
 export { ASimpleAction, APayloadAction }
 ```
 
+If you have many actions in a file, separating the action construction and the
+TS type declarations aids readability. You will soon realise if you've forgotten
+the TS type when you come to use it in reducers, tests etc.
+
+```ts
+const ASimpleAction = a("SIMPLE/ACTION");
+const APayloadAction = a("PAYLOAD/ACTION", p<{ str: string }>());
+const AOtherPayloadAction = a("PAYLOAD/OTHER_ACTION", p<{ num: number }>());
+
+type ASimpleAction = ReturnType<typeof ASimpleAction>;
+type APayloadAction = ReturnType<typeof APayloadAction>;
+type AOtherPayloadAction = ReturnType<typeof AOtherPayloadAction>;
+
+export { ASimpleAction, APayloadAction, AOtherPayloadAction };
+```
+
 ## Development
 
 Clone repo and install dependencies using NPM:
