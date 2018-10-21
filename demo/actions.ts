@@ -1,12 +1,16 @@
 import { a, p } from '../src/a'
+import { a as A, p as P } from '../src/fsa/a'
 
-const ATestAction = a('A_TEST_ACTION', p<{ str: string }>())
+const ATestAction = a('TEST_ACTION', p<{ str: string }>())
 type ATestAction = ReturnType<typeof ATestAction>
 
-const ASecondTestAction = a('A_SECOND_TEST_ACTION')
+const ASecondTestAction = a('SECOND_TEST_ACTION')
 type ASecondTestAction = ReturnType<typeof ASecondTestAction>
 
-const AThirdTestAction = a('A_THIRD_TEST_ACTION', p<{ num: number }>())
+const AThirdTestAction = a('THIRD_TEST_ACTION', p<{ num: number }>())
 type AThirdTestAction = ReturnType<typeof AThirdTestAction>
 
-export { ATestAction, ASecondTestAction, AThirdTestAction }
+const AFSAAction = A('FSA', P<string>())
+type AFSAAction = ReturnType<typeof AFSAAction>
+
+export { ATestAction, ASecondTestAction, AThirdTestAction, AFSAAction }
