@@ -1,4 +1,4 @@
-import a from '../src/a'
+import a from '../lib/a'
 
 const ATestAction = a('A_TEST_ACTION', <{ str: string }>{})
 const ASecondTestAction = a('A_SECOND_TEST_ACTION')
