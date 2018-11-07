@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-npm install git+ssh://git@github.com:AventusSystems/a.git#v2.0.0
+npm install git+ssh://git@github.com:AventusSystems/a.git#v3.0.0
 ```
 
 ## Usage
