@@ -21,6 +21,12 @@ pipeline {
             }
         }
 
+        stage('Lint') {
+            steps {
+                sh 'npm run lint'
+            }
+        }
+
         stage('Type Check') {
             steps {
                 sh 'npm run typecheck'

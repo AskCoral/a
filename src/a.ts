@@ -8,11 +8,11 @@ interface IPayloadA<T, Payloads extends {}, A> {
   (obj: Payloads): A
 }
 
-type TSimpleAction<T extends string> = {
+interface ISimpleAction<T extends string> {
   type: T
 }
 
-type TPayloadAction<T extends string, Payloads extends {} = {}> = TSimpleAction<
+type TPayloadAction<T extends string, Payloads extends {} = {}> = ISimpleAction<
   T
 > &
   { [K in keyof Payloads]: Payloads[K] }
@@ -20,7 +20,7 @@ type TPayloadAction<T extends string, Payloads extends {} = {}> = TSimpleAction<
 /**
  * a
  */
-function a<T extends string>(type: T): ISimpleA<T, TSimpleAction<T>>
+function a<T extends string>(type: T): ISimpleA<T, ISimpleAction<T>>
 function a<T extends string, Payloads extends {}>(
   type: T,
   obj: Payloads,

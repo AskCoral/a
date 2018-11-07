@@ -12,7 +12,7 @@ const mockPayload: IMockPayloadInterface = { str: 'string', num: 123 }
 const AAction = a(ACTION)
 type AAction = ReturnType<typeof AAction>
 
-const APayloadAction = a(ACTION, <IMockPayloadInterface>{})
+const APayloadAction = a(ACTION, {} as IMockPayloadInterface)
 type APayloadAction = ReturnType<typeof APayloadAction>
 
 describe('a', () => {
