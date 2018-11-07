@@ -2,9 +2,10 @@ import { ATestAction, ASecondTestAction, AThirdTestAction } from './actions'
 import { Reducer } from 'redux'
 
 export interface IState {
-  test: string | number
+  test: string
+  test2: number
 }
-const initialState: IState = { test: 'bar' }
+const initialState: IState = { test: 'bar', test2: 123 }
 
 export const reducer: Reducer<
   IState,
@@ -19,7 +20,7 @@ export const reducer: Reducer<
     case AThirdTestAction.TYPE:
       return {
         ...state,
-        test: action.num,
+        test2: action.num,
       }
     case ASecondTestAction.TYPE:
     default:
