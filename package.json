@@ -1,6 +1,6 @@
 {
   "name": "a",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Typesafe Redux action creation utility",
   "main": "lib/a.js",
   "scripts": {
@@ -37,9 +37,9 @@
     "redux": "^4.0.0",
     "redux-devtools-extension": "^2.13.5",
     "ts-jest": "^23.10.4",
-    "typescript": "~3.0.1"
+    "typescript": "^3.1.6"
   },
   "peerDependencies": {
-    "typescript": "^3.0.1"
+    "typescript": "^3.1.6"
   }
 }

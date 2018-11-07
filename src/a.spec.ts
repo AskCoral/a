@@ -1,4 +1,4 @@
-import { a, p } from './a'
+import a from './a'
 
 interface IMockPayloadInterface {
   str: string
@@ -12,10 +12,7 @@ const mockPayload: IMockPayloadInterface = { str: 'string', num: 123 }
 const AAction = a(ACTION)
 type AAction = ReturnType<typeof AAction>
 
-const APayloadAction = a(ACTION, ({ str, num }: IMockPayloadInterface) => ({
-  num,
-  str,
-}))
+const APayloadAction = a(ACTION, <IMockPayloadInterface>{})
 type APayloadAction = ReturnType<typeof APayloadAction>
 
 describe('a', () => {
@@ -42,12 +39,5 @@ describe('a', () => {
       }
       expect(APayloadAction(mockPayload)).toEqual(expected)
     })
-  })
-})
-
-describe('p', () => {
-  it('returns the given payload object', () => {
-    const payloadCreator = p<IMockPayloadInterface>()
-    expect(payloadCreator(mockPayload)).toBe(mockPayload)
   })
 })

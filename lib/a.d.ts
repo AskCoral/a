@@ -1,11 +1,10 @@
-declare type TPayloadFn<Obj extends {}, R> = (obj: Obj) => R;
-interface ISimpleActionCreator<T, A> {
+interface ISimpleA<T, A> {
     TYPE: T;
     (): A;
 }
-interface IPayloadActionCreator<T, Obj extends {}, A> {
+interface IPayloadA<T, Payloads extends {}, A> {
     TYPE: T;
-    (obj: Obj): A;
+    (obj: Payloads): A;
 }
 declare type TSimpleAction<T extends string> = {
     type: T;
@@ -13,7 +12,6 @@ declare type TSimpleAction<T extends string> = {
 declare type TPayloadAction<T extends string, Payloads extends {} = {}> = TSimpleAction<T> & {
     [K in keyof Payloads]: Payloads[K];
 };
-export declare function a<T extends string>(type: T): ISimpleActionCreator<T, TSimpleAction<T>>;
-export declare function a<T extends string, Obj extends {}, R>(type: T, fn: TPayloadFn<Obj, R>): IPayloadActionCreator<T, Obj, TPayloadAction<T, R>>;
-export declare function p<Obj extends {}>(): (obj: Obj) => Obj;
-export {};
+declare function a<T extends string>(type: T): ISimpleA<T, TSimpleAction<T>>;
+declare function a<T extends string, Payloads extends {}>(type: T, obj: Payloads): IPayloadA<T, Payloads, TPayloadAction<T, Payloads>>;
+export default a;

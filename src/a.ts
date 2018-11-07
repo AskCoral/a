@@ -1,13 +1,11 @@
-type TPayloadFn<Obj extends {}, R> = (obj: Obj) => R
-
-interface ISimpleActionCreator<T, A> {
+interface ISimpleA<T, A> {
   TYPE: T
   (): A
 }
 
-interface IPayloadActionCreator<T, Obj extends {}, A> {
+interface IPayloadA<T, Payloads extends {}, A> {
   TYPE: T
-  (obj: Obj): A
+  (obj: Payloads): A
 }
 
 type TSimpleAction<T extends string> = {
@@ -22,18 +20,15 @@ type TPayloadAction<T extends string, Payloads extends {} = {}> = TSimpleAction<
 /**
  * a
  */
-export function a<T extends string>(
+function a<T extends string>(type: T): ISimpleA<T, TSimpleAction<T>>
+function a<T extends string, Payloads extends {}>(
   type: T,
-): ISimpleActionCreator<T, TSimpleAction<T>>
-export function a<T extends string, Obj extends {}, R>(
-  type: T,
-  fn: TPayloadFn<Obj, R>,
-): IPayloadActionCreator<T, Obj, TPayloadAction<T, R>>
-export function a(type: string, payloadFn?: (obj: object) => object) {
+  obj: Payloads,
+): IPayloadA<T, Payloads, TPayloadAction<T, Payloads>>
+function a(type: string, payloads?: object) {
   const actionCreator: any = (obj: object) => {
-    if (payloadFn) {
-      const extra = payloadFn(obj)
-      return { type, ...extra }
+    if (payloads) {
+      return { type, ...obj }
     }
     return { type }
   }
@@ -41,10 +36,4 @@ export function a(type: string, payloadFn?: (obj: object) => object) {
   return actionCreator
 }
 
-/**
- * p
- */
-export function p<Obj extends {}>(): (obj: Obj) => Obj
-export function p() {
-  return (obj: object) => obj
-}
+export default a

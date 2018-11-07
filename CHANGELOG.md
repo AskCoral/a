@@ -1,5 +1,24 @@
 # Changelog
 
+## 3.0.0
+
+BREAKING CHANGES...
+
+`p` is no longer required (or included). Write your actions using a typed object
+instead.
+
+```
+import a from 'a'
+
+const ASimpleAction = a('A_SIMPLE_ACTION')
+const APayloadAction = a('A_PAYLOAD_ACTION', <{ exampleName: string }>{})
+
+type ASimpleAction = ReturnType<typeof ASimpleAction>
+type APayloadAction = ReturnType<typeof APayloadAction>
+
+export { ASimpleAction, APayloadAction }
+```
+
 ## 2.0.0
 
 BREAKING CHANGES...
