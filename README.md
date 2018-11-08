@@ -18,12 +18,25 @@ npm install git+ssh://git@github.com:AventusSystems/a.git#v3.0.0
 import a from '@aventus/a'
 
 // Simple action without payload
-export const ASimpleAction = a('SIMPLE/ACTION')
-export type ASimpleAction = ReturnType<typeof ASimpleAction>
+const ASimpleAction = a('SIMPLE/ACTION')
+type ASimpleAction = ReturnType<typeof ASimpleAction>
+
+// ASimpleAction()
+// {
+//   type: "SIMPLE/ACTION",
+// }
 
 // Action with payload
-export const APayloadAction = a('PAYLOAD/ACTION', <{ str: string }>{})
-export type APayloadAction = ReturnType<typeof APayloadAction>
+const APayloadAction = a('PAYLOAD/ACTION', {} as { str: string })
+type APayloadAction = ReturnType<typeof APayloadAction>
+
+// APayloadAction({ str: 'a string' })
+// {
+//   type: "PAYLOAD/ACTION",
+//   str: "a string",
+// }
+
+export { ASimpleAction, APayloadAction }
 ```
 
 ```ts
@@ -74,7 +87,7 @@ file:
 const ASimpleAction = a('SIMPLE/ACTION')
 type ASimpleAction = ReturnType<typeof ASimpleAction>
 
-const APayloadAction = a('PAYLOAD/ACTION', <{ str: string }>{})
+const APayloadAction = a('PAYLOAD/ACTION', {} as { str: string })
 type APayloadAction = ReturnType<typeof APayloadAction>
 
 export { ASimpleAction, APayloadAction }
@@ -86,14 +99,26 @@ the TS type when you come to use it in reducers, tests etc.
 
 ```ts
 const ASimpleAction = a('SIMPLE/ACTION')
-const APayloadAction = a('PAYLOAD/ACTION', <{ str: string }>{})
-const AOtherPayloadAction = a('PAYLOAD/OTHER_ACTION', <{ num: number }>{})
+const APayloadAction = a('PAYLOAD/ACTION', {} as { str: string })
+const AOtherPayloadAction = a('PAYLOAD/OTHER_ACTION', {} as { num: number })
 
 type ASimpleAction = ReturnType<typeof ASimpleAction>
 type APayloadAction = ReturnType<typeof APayloadAction>
 type AOtherPayloadAction = ReturnType<typeof AOtherPayloadAction>
 
 export { ASimpleAction, APayloadAction, AOtherPayloadAction }
+```
+
+Depending on your tslint config, the payload object can either be written as
+
+```ts
+{} as { str: string }
+```
+
+or
+
+```ts
+<{ str: string }>{}
 ```
 
 ## Development
