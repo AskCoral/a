@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.0.1
+
+Add linting. This converted a couple of types to interfaces, hence the version
+bump.
+
 ## 3.0.0
 
 BREAKING CHANGES...

@@ -1,8 +1,8 @@
-import a from '../lib/a'
+import a from '../src/a'
 
-const ATestAction = a('A_TEST_ACTION', <{ str: string }>{})
+const ATestAction = a('A_TEST_ACTION', {} as { str: string })
 const ASecondTestAction = a('A_SECOND_TEST_ACTION')
-const AThirdTestAction = a('A_THIRD_TEST_ACTION', <{ num: number }>{})
+const AThirdTestAction = a('A_THIRD_TEST_ACTION', {} as { num: number })
 
 type ATestAction = ReturnType<typeof ATestAction>
 type ASecondTestAction = ReturnType<typeof ASecondTestAction>

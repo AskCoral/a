@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { render } from 'react-dom'
-import { createStore, Dispatch, ActionCreator } from 'redux'
 import { connect, Provider } from 'react-redux'
-import { reducer, IState } from './reducer'
-import { ATestAction, ASecondTestAction, AThirdTestAction } from './actions'
+import { ActionCreator, createStore, Dispatch } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
+import { ASecondTestAction, ATestAction, AThirdTestAction } from './actions'
+import { IState, reducer } from './reducer'
 
 const mapStateToProps = (state: IState) => ({
   test: state.test,

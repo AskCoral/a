@@ -1,5 +1,5 @@
-import { ATestAction, ASecondTestAction, AThirdTestAction } from './actions'
 import { Reducer } from 'redux'
+import { ASecondTestAction, ATestAction, AThirdTestAction } from './actions'
 
 export interface IState {
   test: string
