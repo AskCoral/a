@@ -38,5 +38,11 @@ pipeline {
                 sh 'npm run test:ci'
             }
         }
+
+        stage('Build') {
+            steps {
+                sh 'npm run build'
+            }
+        }
     }
 }

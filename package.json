@@ -15,20 +15,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AventusSystems/a.git"
+    "url": "git+https://github.com/ArtosSystems/a.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/AventusSystems/a/issues"
+    "url": "https://github.com/ArtosSystems/a/issues"
   },
-  "homepage": "https://github.com/AventusSystems/a#readme",
+  "homepage": "https://github.com/ArtosSystems/a#readme",
   "dependencies": {},
   "devDependencies": {
     "@types/jest": "^23.3.5",
-    "@types/react": "^16.4.16",
-    "@types/react-dom": "^16.0.9",
-    "@types/react-redux": "^6.0.9",
+    "@types/react": "^16.7.7",
+    "@types/react-dom": "^16.0.10",
+    "@types/react-redux": "^6.0.10",
     "jest": "^23.6.0",
     "parcel-bundler": "^1.10.2",
     "prettier": "^1.14.3",
