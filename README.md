@@ -150,7 +150,8 @@ MIT. See the [LICENSE](LICENSE) file for more information.
 ## Publishing
 
 Remember to update the [CHANGELOG](CHANGELOG.md) and bump the version number
-using `npm version patch`, `npm version minor`, or `npm version major`.
+using `npm version patch`, `npm version minor`, or `npm version major`. Publish
+to registry using `npm publish`.
 
 ## Credits
 
