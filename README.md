@@ -1,11 +1,9 @@
 # a: Typesafe Redux action creation utility
 
-**NB: this hasn't been released to NPM yet.**
-
 ## Install
 
 ```sh
-npm install git+ssh://git@github.com:AventusSystems/a.git#v3.0.0
+npm install @artossystems/a
 ```
 
 ## Usage
@@ -15,26 +13,30 @@ npm install git+ssh://git@github.com:AventusSystems/a.git#v3.0.0
  * Actions
  */
 
-import a from '@aventus/a'
+import a from '@artossystems/a'
 
 // Simple action without payload
 const ASimpleAction = a('SIMPLE/ACTION')
 type ASimpleAction = ReturnType<typeof ASimpleAction>
 
-// ASimpleAction()
-// {
-//   type: "SIMPLE/ACTION",
-// }
+/**
+ * Produces:
+ * {
+ *   type: "SIMPLE/ACTION",
+ * }
+ */
 
 // Action with payload
 const APayloadAction = a('PAYLOAD/ACTION', {} as { str: string })
 type APayloadAction = ReturnType<typeof APayloadAction>
 
-// APayloadAction({ str: 'a string' })
-// {
-//   type: "PAYLOAD/ACTION",
-//   str: "a string",
-// }
+/**
+ * Produces:
+ * {
+ *   type: "PAYLOAD/ACTION",
+ *   str: "a string",
+ * }
+ */
 
 export { ASimpleAction, APayloadAction }
 ```
@@ -52,6 +54,7 @@ export const reducer: Reducer<IState, ASimpleAction | APayloadAction> = (
     case ASimpleAction.TYPE:
       return {
         ...state,
+        stringInState: 'updated string',
       }
     case APayloadAction.TYPE:
       return {
@@ -77,7 +80,7 @@ const mapDispatchToProps = (dispatch: Dispatch): IDispatchProps => ({
 
 ## Tips
 
-The aim of this project it to reduce boilerplate but also aid readability of
+The aim of this project is to reduce boilerplate but also aid readability of
 action files. Ideally, the action and types will fit on one line each. However,
 Prettier's 80 character line-length limit may make this difficult. One way to
 give yourself more characters, is to export all the actions at the end of the
@@ -137,16 +140,13 @@ Run the demo redux app using:
 npm start
 ```
 
+## License
+
+MIT. See the [LICENSE](LICENSE) file for more information.
+
 ## Publishing
 
-Edit `src/a.ts` and build to lib folder before publishing:
-
-```sh
-npm run build
-```
-
-Remember to update the [CHANGELOG](CHANGELOG.md) and advance the version number
-in the `package.json` file.
+Remember to update the [CHANGELOG](CHANGELOG.md).
 
 ## Credits
 
@@ -155,4 +155,5 @@ This project was inspired by [Nicholas Jamieson](https://github.com/cartant)'s
 and for his swift answers to questions.
 
 Also thanks to the person who wrote
-[this post](https://qiita.com/terrierscript/items/b9687f610a96ab964ab2).
+[this post](https://qiita.com/terrierscript/items/b9687f610a96ab964ab2), you set
+us on a path to understanding more about Typescript.
