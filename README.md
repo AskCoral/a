@@ -6,6 +6,8 @@ Redux actions in TypeScript.
 ## Install
 
 ```sh
+yarn add @artossystems/a
+# or
 npm install @artossystems/a
 ```
 
