@@ -1,5 +1,8 @@
 # a: Typesafe Redux action creation utility
 
+A zero-dependency, boilerplate-reducing utility for easily creating typesafe
+Redux actions in TypeScript.
+
 ## Install
 
 ```sh
