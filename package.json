@@ -1,5 +1,5 @@
 {
-  "name": "a",
+  "name": "@artossystems/a",
   "version": "3.0.1",
   "description": "Typesafe Redux action creation utility",
   "main": "lib/a.js",
@@ -11,7 +11,8 @@
     "test": "jest --watchAll",
     "test:ci": "jest",
     "typecheck": "tsc --noEmit --skipLibCheck",
-    "prettier": "prettier --config .prettierrc --write 'src/**/*.{js,ts}'"
+    "prettier": "prettier --config .prettierrc --write 'src/**/*.{js,ts}'",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
