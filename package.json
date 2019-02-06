@@ -1,6 +1,6 @@
 {
   "name": "@artossystems/a",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "description": "Typesafe Redux action creation utility",
   "main": "lib/a.js",
   "scripts": {
