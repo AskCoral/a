@@ -1,21 +1,21 @@
-interface ISimpleA<T, A> {
+export interface ISimpleA<T, A> {
   TYPE: T
   (): A
 }
 
-interface IPayloadA<T, Payloads extends {}, A> {
+export interface IPayloadA<T, Payloads extends {}, A> {
   TYPE: T
   (obj: Payloads): A
 }
 
-interface ISimpleAction<T extends string> {
+export interface ISimpleAction<T extends string> {
   type: T
 }
 
-type TPayloadAction<T extends string, Payloads extends {} = {}> = ISimpleAction<
-  T
-> &
-  { [K in keyof Payloads]: Payloads[K] }
+export type TPayloadAction<
+  T extends string,
+  Payloads extends {} = {}
+> = ISimpleAction<T> & { [K in keyof Payloads]: Payloads[K] }
 
 /**
  * a
