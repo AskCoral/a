@@ -12,10 +12,10 @@ export interface ISimpleAction<T extends string> {
   type: T
 }
 
-export type TPayloadAction<T extends string, Payloads extends {} = {}> = ISimpleAction<
-  T
-> &
-  { [K in keyof Payloads]: Payloads[K] }
+export type TPayloadAction<
+  T extends string,
+  Payloads extends {} = {}
+> = ISimpleAction<T> & { [K in keyof Payloads]: Payloads[K] }
 
 /**
  * a
